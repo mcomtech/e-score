@@ -48,22 +48,8 @@ include('check-session.php');
             if(!empty($_GET['addstd'])){
             $class = $_GET['class'];
             $sid = $_GET['subject'];
-            $str = "SELECT
-                    students.student_id,
-                    students.student_fname,
-                    students.student_lname,
-                    class.class_name,
-                    class.class_lvl,
-                    class.class_room,
-                    students.student_code,
-                    students.student_title
-                    FROM
-                    students
-                    JOIN class
-                    ON students.class_id = class.class_id,
-                    course
-                    WHERE
-                    class.class_id = $class AND students.student_id != course.student_id AND course.subject_id = $sid";
+            $str = "SELECT * FROM students,class WHERE students.class_id = class.class_id 
+             AND class.class_id = '$class' ";
             $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
             while($std = mysqli_fetch_array($rs)){
                 

@@ -11,7 +11,7 @@ if(isset($_POST['add_point'])){
     mysqli_query($conn,$str)or die(mysqli_error($conn));
 }
 
-if(!empty($_GET['subject']&&$_GET['student'])){
+if(!empty($_GET['subject'])&& !empty($_GET['student'])){
     $subject = $_GET['subject'];
     $student = $_GET['student'];
 
