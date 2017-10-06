@@ -18,4 +18,14 @@ if(!empty($_GET['act'])&& $_GET['act']=='del_subject'){
     echo "<script>
     window.location='subject.php';</script>";
 }
+
+if(!empty($_GET['act'])&& $_GET['act']=='del_student'){
+    
+    $std_id = $_GET['student'];
+    $str = "DELETE FROM students WHERE student_id ='$std_id'";
+    mysqli_query($conn,$str) or die(mysqli_error($conn));
+
+    echo "<script>
+    window.location='student.php';</script>";
+}
 ?>

@@ -107,16 +107,13 @@ if(isset($_POST['confirm'])){
                             <select name="subject" id="subject" class="form-control">
                             <?php 
                             $tid = $_SESSION['aID'];
-                            if($_SESSION['aStatus']=='ADMIN'){
-                                $strs = "";
+                            if($_SESSION['aStatus']=='ADMIN'){ 
+                                $string = "";
+                            }else{
+                                $string =" AND sj.teacher_id = '$tid'";
                             }
-                            else{
-                                $strs = "AND sj.teacher_id = '$tid'";
-                            }
-                            
                             $str = "SELECT * FROM subject AS sj, teachers  AS t 
-                            WHERE sj.teacher_id = t.teacher_id".$strs;
-                            
+                            WHERE sj.teacher_id = t.teacher_id".$string;
                             $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
                             while($subj = mysqli_fetch_array($rs)){
                             ?>
