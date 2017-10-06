@@ -66,6 +66,10 @@ if(isset($_POST['confirm'])){
         <ol class="breadcrumb">    
         <li class="breadcrumb-item"><a href="subject.php">รายวิชา</a></li>
         <li class="breadcrumb-item active">รายชื่อนักเรียนในรายวิชา</li>
+        <li class="pull-right"> <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#printModal">
+            <i class="material-icons">print</i>
+            </button> 
+        </li>
         </ol>
         
         </div>
@@ -103,9 +107,16 @@ if(isset($_POST['confirm'])){
                             <select name="subject" id="subject" class="form-control">
                             <?php 
                             $tid = $_SESSION['aID'];
+                            if($_SESSION['aStatus']=='ADMIN'){
+                                $strs = "";
+                            }
+                            else{
+                                $strs = "AND sj.teacher_id = '$tid'";
+                            }
+                            
                             $str = "SELECT * FROM subject AS sj, teachers  AS t 
-                            WHERE sj.teacher_id = t.teacher_id 
-                            AND sj.teacher_id = '$tid'";
+                            WHERE sj.teacher_id = t.teacher_id".$strs;
+                            
                             $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
                             while($subj = mysqli_fetch_array($rs)){
                             ?>
@@ -166,7 +177,7 @@ if(isset($_POST['confirm'])){
                         <td><?php echo $std['class_name'];?> <?php echo $std['class_lvl'];?>/<?php echo $std['class_room'];?></td>
                         <td><?php echo $std['course_grade'];;?></td>
                         <td>
-                            <a href="add_score.php?subject=<?php echo $std['subject_id'];?>&student=<?php echo $std['student_id'];?>"><i class="material-icons">visibility</i></a>
+                            <a href="add_score.php?subject=<?php echo $std['subject_id'];?>&student=<?php echo $std['student_id'];?>" class="btn btn-sm btn-primary"><i class="material-icons">visibility</i></a>
                         </td>
                     </tr>
             <?php } ?>
@@ -184,6 +195,41 @@ if(isset($_POST['confirm'])){
         </table>
     </div>
     
+    <!--print Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">พิมพ์รายชื่อนักเรียนในรายวิชา</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="print.php" method="post">
+            <input type="hidden" name="subject" value="<?php echo $_GET['subject'];?>">
+            <label for="class">เลือกห้องเรียน</label>
+            <select name="class" id="class" class="form-control">
+                <?php 
+                $str1 = "SELECT * FROM class";
+                $rs1 = mysqli_query($conn,$str1)or die(mysqli_error($conn));
+                while($data1 = mysqli_fetch_array($rs1)){ 
+                ?>
+                <option value="<?php echo $data1['class_id'];?>"><?php echo $data1['class_name'];?> <?php echo $data1['class_lvl'];?>/<?php echo $data1['class_room'];?></option>
+                <?php } ?>
+            </select>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <button type="submit" name="print" class="btn btn-primary">พิมพ์รายงาน</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!--END PRINT MODAL-->
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

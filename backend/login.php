@@ -35,56 +35,67 @@ if(isset($_POST['login'])){
       rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
-        <style>
-        .login{
-            margin:auto;
-        }
-        </style>
 </head>
 <body>
-    <div class="jumbotron">
-        <div class="container">
-            <h1 style="text-align:center;">ระบบจัดการผลการเรียนออนไลน์</h1>
-        </div>
-    </div>
-    <div class="container">
-    
-    <form action="" method="post">
-        <div class="col-md-4 login">
-        <!--alert when login error-->
-        <?php if(!empty($msg)){
-        ?>
-        <div class="alert alert-danger" role="alert">
-        <?php echo $msg;?>
-        </div>
-        <?php } ?>
-        <!--End error Login-->
-
-        <div class="form-group">
-            <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">
-            <i class="material-icons">account_circle</i>
-            </span>
-            <input type="text" name="username" placeholder="Username" class="form-control" autofocus>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">
-            <i class="material-icons">lock</i>
-            </span>
-            <input type="password" name="password" placeholder="Password" class="form-control">
-            </div>
-        </div>        
-        <div class="form-group">
-            <button type="reset" name="reset" class="btn btn-danger">ล้างข้อมูล</button>
-            <button type="submit" name="login" class="btn btn-default"> เข้าสู่ระบบ</button>
-            
-        </div>
-        </div>
-
         
-    </form>
-    </div>
+<section class="login-block">
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 login-sec">
+		    <h2 class="text-center">Login Now</h2>
+            <!--alert when login error-->
+            <?php if(!empty($msg)){
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <?php echo $msg;?>
+            </div>
+            <?php } ?>
+            <!--End error Login-->
+		    <form method="post" action="" class="login-form" >
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="text-uppercase">Username</label>
+                <input type="text" class="form-control" name="username" placeholder="ชื่อผู้ใช้งาน">
+                
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="">
+            </div>
+            
+            
+                <div class="form-check">
+                <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">
+                <small>Remember Me</small>
+                </label>
+                <button type="submit" name="login" class="btn btn-login float-right">Submit</button>
+            </div>
+            
+            </form>
+            <div class="copy-text">Created with <i class="fa fa-heart"></i> by <a href="http://grafreez.com">Grafreez.com</a></div>
+                    </div>
+                    <div class="col-md-8 banner-sec">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            </ol>
+                        <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="banner-text">
+                        <h2>ระบบจัดการผลการเรียน</h2>
+                        <p>สำหรับบุคลากรวิทยาลัยเอ็น-เทคบริหารธุรกิจใช้ในการจัดการนักเรียน ชั้นเรียน กรอกคะแนนเก็บและตัดเกรด</p>
+                    </div>	
+            </div>
+                </div>
+                
+                        </div>	   
+                        
+                    </div>
+                </div>
+            </div>
+            </section>
+        
 </body>
 </html>
