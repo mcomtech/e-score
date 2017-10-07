@@ -23,6 +23,15 @@ if(isset($_POST['confirm'])){
 }
 }
 
+if(isset($_POST['update_grade'])){
+    $grade = $_POST['grade'];
+    $std_id = $_POST['student'];
+    $subject = $_GET['subject'];
+    $str = "UPDATE course SET course_grade = '$grade' WHERE student_id='$std_id' AND subject_id = '$subject'";
+    mysqli_query($conn,$str)or die(mysqli_error($conn));
+}
+
+
             if(!empty($_GET['subject'])){
                 $sub_id = $_GET['subject'];
             }else{
@@ -66,26 +75,23 @@ if(isset($_POST['confirm'])){
         <ol class="breadcrumb">    
         <li class="breadcrumb-item"><a href="subject.php">รายวิชา</a></li>
         <li class="breadcrumb-item active">รายชื่อนักเรียนในรายวิชา</li>
-        <li class="pull-right"> <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#printModal">
-            <i class="material-icons">print</i>
-            </button> 
-        </li>
         </ol>
         
         </div>
-        <div>
-
-        <div class="form-group">
-            <ul class="nav nav-pills">
-                 <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#" data-toggle="modal" data-target="#exampleModal">
-                    เพิ่มนักเรียนในรายวิชานี้
-                </a>
-                </li>
-                 <?php } ?>
-                
-            </ul>
+        <div class="row">
+                <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
+                <div class="col-md-2">
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn  btn-primary">
+                        เพิ่มนักเรียนในรายวิชานี้
+                    </button>
+                 </div>
+                <div class="col-md-1"></div>
+                <?php } ?>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#printModal">
+                       <i class="material-icons">print</i> พิมพ์รายงาน
+                    </button> 
+                </div>   
         </div>
         <!--สิ้นสุดเมนูรอง-->
 
@@ -147,7 +153,7 @@ if(isset($_POST['confirm'])){
         </div>
         <!--สิ้นสุดฟอร์ม-->
 
-        <table class="table table-responsive" id="myTable">
+        <table class="table table-responsive" id="myTable"  data-page-length='25'>
             <thead>
                 <tr>
                     <th>รหัส</th>
@@ -172,7 +178,21 @@ if(isset($_POST['confirm'])){
                         <td><?php echo $std['student_title'];?><?php echo $std['student_fname'];?></td>
                         <td><?php echo $std['student_lname'];?></td>
                         <td><?php echo $std['class_name'];?> <?php echo $std['class_lvl'];?>/<?php echo $std['class_room'];?></td>
-                        <td><?php echo $std['course_grade'];;?></td>
+                        <td>
+                            
+                        <form action="" method="post" style="margin:0px;">
+                            <input type="hidden" name="student" value="<?php echo $std['student_id'];?>">
+                            <div class="input-group">
+                            <input type="number" name="grade" min="1" step="0.5" max="4" value="<?php echo $std['course_grade'];?>">
+                            <span class="input-group-btn">
+                                <button type="sunmit" name="update_grade" class="btn btn-info btn-sm">
+                                <i class="material-icons">cached</i>
+                            </button>
+                            </span>
+                            </div>
+                        </form>
+                    
+                    </td>
                         <td>
                             <a href="add_score.php?subject=<?php echo $std['subject_id'];?>&student=<?php echo $std['student_id'];?>" class="btn btn-sm btn-primary"><i class="material-icons">visibility</i></a>
                         </td>

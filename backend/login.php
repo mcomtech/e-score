@@ -34,7 +34,7 @@ if(isset($_POST['login'])){
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
         
@@ -54,12 +54,12 @@ if(isset($_POST['login'])){
 		    <form method="post" action="" class="login-form" >
             <div class="form-group">
                 <label for="exampleInputEmail1" class="text-uppercase">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="ชื่อผู้ใช้งาน">
+                <input type="text" class="form-control" name="username" placeholder="ชื่อผู้ใช้งาน" autofocus>
                 
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1" class="text-uppercase">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="">
+                <input type="password" name="password" class="form-control" placeholder="รหัสผ่าน">
             </div>
             
             
@@ -68,11 +68,11 @@ if(isset($_POST['login'])){
                 <input type="checkbox" class="form-check-input">
                 <small>Remember Me</small>
                 </label>
-                <button type="submit" name="login" class="btn btn-login float-right">Submit</button>
+                <button type="submit" name="login" class="btn btn-login float-right">เข้าสู่ระบบ</button>
             </div>
             
             </form>
-            <div class="copy-text">Created with <i class="fa fa-heart"></i> by <a href="http://grafreez.com">Grafreez.com</a></div>
+            <div class="copy-text">พัฒนาโดย <i class="fa fa-heart"></i> <a href="http://www.app2day.in.th">อ.ศราวุธ  อินรีย์</a></div>
                     </div>
                     <div class="col-md-8 banner-sec">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

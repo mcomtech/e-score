@@ -66,18 +66,29 @@ if(isset($_POST['edit_student'])){
     <p>
     <div class="row">
     <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
+    
+    
     <!-- add student btn -->
     <div class="col-md-2">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     เพิ่มนักเรียนใหม่
     </button>
     </div>
+       
+    <?php } ?>
     <div class="col-md-4">
         <form action="" method="get">
         <div class="input-group">
             <select name="class" id="class" class="form-control" placeholder="เลือกชั้นเรียน" aria-label="เลือกชั้นเรียน">
-                <?php $strClass = "SELECT * FROM class";
+                <?php 
+                $teacher = $_SESSION['aID'];
+                if($_SESSION['aStatus']=='ADMIN'){ 
+                    $str2 = "";
+                }else{
+                    $str2 = " WHERE teacher_id = '$teacher'";
+                }
                 
+                $strClass = "SELECT * FROM class".$str2;
                 $rsClass = mysqli_query($conn,$strClass)or die(mysqli_error($conn));
                 while($objClass = mysqli_fetch_array($rsClass)){ 
                 if(!empty($_GET['class']) && $_GET['class'] == $objClass['class_id']){
@@ -97,10 +108,8 @@ if(isset($_POST['edit_student'])){
         </div>
         </form>
     </div>
-
     </div>
     </p>
-    <?php } ?>
 
     <table class="table" id="myTable" data-page-length='25'>
         <thead>

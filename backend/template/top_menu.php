@@ -1,24 +1,24 @@
 <!--เมนูด้านบน-->
-        <ul class="nav justify-content-end">
+        <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
-                <a class="nav-link active" href="student.php">รายชื่อนักเรียน</a>
+                <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == "student.php"){ echo "active"; } ?>" href="student.php">รายชื่อนักเรียน</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="subject.php">รายวิชาที่สอน</a>
+                <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == "subject.php"){ echo  "active"; } ?>" href="subject.php">รายวิชาที่สอน</a>
             </li>
             <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
             <li class="nav-item">
-                <a class="nav-link" href="#">รายชื่อครู</a>
+                <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == "teacher.php"){ echo  "active"; } ?>" href="teacher.php">รายชื่อครู</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="class.php">ชั้นเรียน</a>
+                <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == "class.php"){ echo  "active"; } ?>" href="class.php">ชั้นเรียน</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">ภาคเรียน</a>
+                <a class="nav-link " href="#">ภาคเรียน</a>
             </li>
             <? } ?>
             <li class="nav-item">
-                <a class="nav-link" href="#">ข้อมูลส่วนตัว</a>
+                <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == "profile.php"){ echo  "active"; } ?>" href="profile.php">ข้อมูลส่วนตัว</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="index.php?logged_out=true">ออกจากระบบ</a>

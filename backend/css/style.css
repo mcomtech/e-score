@@ -1,107 +1,129 @@
-@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-.login-block {
-    background: #DE6262;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #FFB88C, #DE6262);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    float: left;
-    width: 100%;
-    padding: 70px 0;
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+body {
+  background: #F1F3FA;
 }
 
-.banner-sec {
-    background: url(https://static.pexels.com/photos/33972/pexels-photo.jpg) no-repeat left bottom;
-    background-size: cover;
-    min-height: 500px;
-    border-radius: 0 10px 10px 0;
-    padding: 0;
+/* Profile container */
+.profile {
+  margin: 20px 0;
 }
 
-.container {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
 }
 
-.carousel-inner {
-    border-radius: 0 10px 10px 0;
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
 }
 
-.carousel-caption {
-    text-align: left;
-    left: 5%;
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
 }
 
-.login-sec {
-    padding: 50px 30px;
-    position: relative;
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
 }
 
-.login-sec .copy-text {
-    position: absolute;
-    width: 80%;
-    bottom: 20px;
-    font-size: 13px;
-    text-align: center;
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-.login-sec .copy-text i {
-    color: #FEB58A;
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
 }
 
-.login-sec .copy-text a {
-    color: #E36262;
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
 }
 
-.login-sec h2 {
-    margin-bottom: 30px;
-    font-weight: 800;
-    font-size: 30px;
-    color: #DE6262;
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
 }
 
-.login-sec h2:after {
-    content: " ";
-    width: 100px;
-    height: 5px;
-    background: #FEB58A;
-    display: block;
-    margin-top: 20px;
-    border-radius: 3px;
-    margin-left: auto;
-    margin-right: auto
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
 }
 
-.btn-login {
-    background: #DE6262;
-    color: #fff;
-    font-weight: 600;
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
 }
 
-.banner-text {
-    width: 70%;
-    position: absolute;
-    bottom: 40px;
-    padding-left: 20px;
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.banner-text h2 {
-    color: #fff;
-    font-weight: 600;
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
 }
 
-.banner-text h2:after {
-    content: " ";
-    width: 100px;
-    height: 5px;
-    background: #FFF;
-    display: block;
-    margin-top: 20px;
-    border-radius: 3px;
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
 }
 
-.banner-text p {
-    color: #fff;
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+.btn {
+  border-radius: 0px;
 }

@@ -106,23 +106,16 @@ if(isset($_POST['add_cls'])){
                     <div class="modal-body">
                         <form action="" method="post" >
                                 <div class="form-group">
-                                    <label for="name">ระดับชั้น</label>
-                                    <select name="name" id="name" class="form-control">
+                                    <label for="name" class="col-md-4">ระดับชั้น</label>
+                                    <select name="name" id="name">
                                         <option value="ปวช.">ปวช</option>
                                         <option value="ปวส.">ปวส</option>
                                     </select>
-                                    </div>
-                                    <div class="form-group">
-                                            <label for="year" class="col-md-5">ชั้นปี</label><label for="room" class="col-md-5">ห้อง</label>
-                                            <div class="row">
-                                            <input type="number" name="lvl" id="year" min="1" max="999" value="1" class=" col-md-4 form-control">
-                                            
-                                            <input type="number" name="room" id="room" min="1" max="999" value="1" class="col-md-4 form-control">
-                                            </div>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="class">ครูประจำชั้น</label>
-                                    <select name="teacher" class="form-control">
+                                    <label for="year" >ชั้นปี</label><label for="room" >ห้อง</label>
+                                    <input type="number" name="lvl" id="year" min="1" max="999" value="1">
+                                    <input type="number" name="room" id="room" min="1" max="999" value="1">
+                                    <label for="class" class="col-md-4">ครูประจำชั้น</label>
+                                    <select name="teacher">
                                             <?php 
                                             $str3 = "SELECT * FROM teachers";
                                             $rs3 = mysqli_query($conn,$str3)or die(mysqli_error($conn));
@@ -133,9 +126,6 @@ if(isset($_POST['add_cls'])){
                                             </select>
                                 </div>
                             
-
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
@@ -166,20 +156,20 @@ if(isset($_POST['add_cls'])){
             </button>
         </div>
         <div class="modal-body">
-            <form action="" method="post">
+            <form action="" method="post" class="form">
             <div class="col-md-12 c-box ">
                 <div class="form-group">
-                    <label for="name">ระดับชั้น</label>
-                    <select name="name" id="name" class="form-control">
+                    <label for="name" class="col-md-4">ระดับชั้น</label>
+                    <select name="name" id="name">
                         <option value="ปวช.">ปวช</option>
                         <option value="ปวส.">ปวส</option>
                     </select>
-                    <label for="year">ชั้นปี</label>
-                    <input type="number" name="lvl" id="year" min="1" max="999" value="1" class="form-control">
+                    <label for="year" >ชั้นปี</label>
+                    <input type="number" name="lvl" id="year" min="1" max="999" value="1">
                     <label for="room">ห้อง</label>
-                    <input type="number" name="room" id="room" min="1" max="999" value="1" class="form-control">
-                    <label for="class">ครูประจำชั้น</label>
-                    <select name="teacher" class="form-control">
+                    <input type="number" name="room" id="room" min="1" max="999" value="1">
+                    <label for="class" class="col-md-4">ครูประจำชั้น</label>
+                    <select name="teacher" >
                             <?php 
                             $str = "SELECT * FROM teachers";
                             $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
