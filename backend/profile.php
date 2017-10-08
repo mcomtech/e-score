@@ -67,7 +67,10 @@ Licensed under MIT
                                 <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><i class="material-icons">account_box</i> ข้อมูลส่วนตัว</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><i class="material-icons">settings</i> การตั้งค่า</a>
+                                <a class="nav-link" data-toggle="tab" href="#msg" role="tab"><i class="material-icons">inbox</i> ข้อความ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><i class="material-icons">settings</i> แก้ไขข้อมูลส่วนตัว</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><i class="material-icons">vpn_key</i> เปลี่ยนรหัสผ่าน</a>
@@ -83,8 +86,35 @@ Licensed under MIT
             <div class="col-md-9">
                 <div class="profile-content">
                         <div class="tab-content">
-                        <div class="tab-pane active" id="home" role="tabpanel">ข้อมูลส่วนตัว</div>
-                        <div class="tab-pane" id="profile" role="tabpanel">การตั้งค่า</div>
+                        <div class="tab-pane active" id="home" role="tabpanel">
+                            <strong><h4>ข้อมูลส่วนตัวบุคลากร</h4></strong>
+                            <hr>                            
+                            <dl class="row">
+                            <dt class="col-sm-3">รหัสประจำตัว</dt>
+                            <dd class="col-sm-9">6001010</dd>
+
+                            <dt class="col-sm-3">ชื่อ</dt>
+                            <dd class="col-sm-9">นายศราวุธ  อินรีย์</dd>
+
+                            <dt class="col-sm-3">ตำแหน่ง</dt>
+                            <dd class="col-sm-9">ครูปฏิบัติการสอน</dd>
+
+                            <dt class="col-sm-3 text-truncate">ฝ่ายงาน</dt>
+                            <dd class="col-sm-9">ศูนย์ข้อมูลและสารสนเทศ</dd>
+                            <br>
+                            <dt class="col-sm-3 text-truncate">ข้อมูลการติดต่อ</dt>
+                            <dd class="col-sm-9"></dd>
+                            
+                            <dt class="col-sm-3">เบอร์โทร</dt>
+                            <dd class="col-sm-9">089-3762369</dd>
+
+                            <dt class="col-sm-3">อีเมล์</dt>
+                            <dd class="col-sm-9">doridori2692@gmail.com</dd>
+                            </dl>
+
+                        </div>
+                        <div class="tab-pane" id="msg" role="tabpanel">ข้อความ</div>
+                        <div class="tab-pane" id="profile" role="tabpanel">แก้ไขข้อมูลส่วนตัว</div>
                         <div class="tab-pane" id="messages" role="tabpanel">เปลี่ยนรหัสผ่าน</div>
                         <div class="tab-pane" id="settings" role="tabpanel">ออกจากระบบ</div>
                         </div>
