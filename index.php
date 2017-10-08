@@ -16,7 +16,7 @@ if(isset($_POST['changepass'])){
     $str1 = "SELECT student_password FROM students WHERE student_id = '$stdid'";
     $rs1 = mysqli_query($conn,$str1);
     $data = mysqli_fetch_array($rs1);
-    if($old = $data['student_password']){
+    if($old == $data['student_password']){
     if($pass1 == $pass2){
         $str = "UPDATE students SET student_password = '$pass1' WHERE student_id = '$stdid'";
         mysqli_query($conn,$str)or die(mysqli_error($conn));

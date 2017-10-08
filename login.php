@@ -1,5 +1,28 @@
 <?php 
 include('config.php');
+
+if($_POST['login_type']=='personnel'){
+    if(isset($_POST['login'])){
+    $user = $_POST['username'];
+    $pass = md5($_POST['password']);
+    $str = "SELECT teacher_id,username,password,status FROM teachers WHERE username='$user' 
+            AND password = '$pass'";
+    $resultset = mysqli_query($conn,$str)or die(mysqli_error($conn));
+    $nums = mysqli_num_rows($resultset);        
+            if(!empty($nums)){
+                $data = mysqli_fetch_array($resultset);
+                session_start();
+                $_SESSION['logged_in'] = true;
+                $_SESSION['aID'] = $data['teacher_id'];
+                $_SESSION['aUser'] = $data['username'];
+                $_SESSION['aStatus'] = $data['status'];
+                echo "<script>window.location='backend/index.php';</script>";
+            }else{
+                $msg = "Username or password not found";
+            }
+}
+}else{
+
 if(isset($_POST['login'])){
     $user = $_POST['username'];
     $pass = md5($_POST['password']);
@@ -16,6 +39,7 @@ if(isset($_POST['login'])){
             }else{
                 $msg = "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง";
             }
+    }
 }
 
 ?>
@@ -51,13 +75,21 @@ if(isset($_POST['login'])){
             <!--End error Login-->
 		    <form method="post" action="" class="login-form" >
             <div class="form-group">
-                <label for="exampleInputEmail1" class="text-uppercase">Username</label>
+                <label for="exampleInputEmail1" class="text-uppercase">ชื่อผู้ใช้งาน</label>
                 <input type="text" class="form-control" name="username" placeholder="ชื่อผู้ใช้งาน" autofocus>
                 
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                <label for="exampleInputPassword1" class="text-uppercase">รหัสผ่าน</label>
                 <input type="password" name="password" class="form-control" placeholder="รหัสผ่าน">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="text-uppercase">เข้าสู่ระบบในฐานะ</label>
+                <select name="login_type" class="form-control">
+                    <option value="personnel">ครู / บุคลากร</option>
+                    <option value="student">นักเรียน / นักศึกษา</option>
+                </select>
             </div>
             
             
@@ -82,8 +114,8 @@ if(isset($_POST['login'])){
                 <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="banner-text">
-                        <h2>ระบบทะเบียนสำหรับนักศึกษา</h2>
-                        <p>สำหรับนักศึกษาวิทยาลัยเอ็น-เทคบริหารธุรกิจใช้ในการจัดการวางการเรียนรู้ในแต่ละภาคเรียน การเช็คคะแนน และผลการเรียนออนไลน์</p>
+                        <h2>ระบบทะเบียนและประมวลผล</h2>
+                        <p>สำหรับบุคลากรและนักศึกษาวิทยาลัยเอ็น-เทคบริหารธุรกิจใช้ในการจัดการวางการเรียนรู้ในแต่ละภาคเรียน การเช็คคะแนน และผลการเรียนออนไลน์</p>
                     </div>	
             </div>
                 </div>

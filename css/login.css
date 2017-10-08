@@ -1,4 +1,5 @@
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+@import url('https://fonts.googleapis.com/css?family=Kanit');
 .login-block {
     background: #DE6262;
     /* fallback for old browsers */
@@ -10,7 +11,9 @@
     width: 100%;
     padding: 70px 0;
 }
-
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Kanit', sans-serif;
+}
 .banner-sec {
     background: url(https://static.pexels.com/photos/33972/pexels-photo.jpg) no-repeat left bottom;
     background-size: cover;

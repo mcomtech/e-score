@@ -133,7 +133,27 @@ include('check-session.php');
 
 
                         </div>
-                        <div class="tab-pane" id="messages" role="tabpanel">เปลี่ยนรหัสผ่าน</div>
+                        <div class="tab-pane" id="messages" role="tabpanel">
+                            <form action="index.php" method="post">
+                                <div class="form-group">
+                                    <label for="password1" class="form-control-label col-md-4">รหัสผ่านเดิม:</label>
+                                    <input type="password" name="old-pass" id="password1" required>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="password1" class="form-control-label col-md-4">รหัสผ่านใหม่:</label>
+                                    <input type="password" name="password1" id="password1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password1" class="form-control-label col-md-4">รหัสผ่านใหม่(อีกครั้ง):</label>
+                                    <input type="password" name="password2" id="password1" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" name="changepass" class="btn btn-primary">ยืนยันการเปลี่ยนรหัส</button>
+                                </div>    
+                            </form>
+
+                        </div>
                         <div class="tab-pane" id="settings" role="tabpanel">ออกจากระบบ</div>
                         </div>
                 </div>

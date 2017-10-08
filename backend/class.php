@@ -116,17 +116,20 @@ if(isset($_POST['confirmEdit'])){
                     </div>
                     <div class="modal-body">
                         <form action="" method="post" >
+                            <div class="col-md-12 c-box ">
                                 <div class="form-group">
                                     <input type="hidden" name="class" value="<?php echo $cls['class_id'];?>">
-                                    <label for="name" class="col-md-4">ระดับชั้น</label>
+                                    <label for="name" class="col-md-2">ระดับชั้น</label>
                                     <select name="name" id="name">
                                         <option value="ปวช." <?php if($cls['class_name'] == 'ปวช.'){ echo "selected";}?>>ปวช</option>
                                         <option value="ปวส." <?php if($cls['class_name'] == 'ปวส.'){ echo "selected";}?>>ปวส</option>
                                     </select>
-                                    <label for="year" >ชั้นปี</label><label for="room" >ห้อง</label>
+                                    <label for="year" >ชั้นปี</label>
                                     <input type="number" name="lvl" id="year" min="1" max="999"  value="<?php echo $cls['class_lvl'];?>" >
+                                    <label for="room" >/</label>
                                     <input type="number" name="room" id="room" min="1" max="999" value="<?php echo $cls['class_room'];?>">
-                                    <label for="class" class="col-md-4">ครูประจำชั้น</label>
+                                </div><div class="form-group">
+                                    <label for="class" class="col-md-2">ครูประจำชั้น</label>
                                     <select name="teacher">
                                             <?php 
                                             $str3 = "SELECT * FROM teachers";
@@ -137,10 +140,11 @@ if(isset($_POST['confirmEdit'])){
                                             <?php } ?>
                                             </select>
                                 </div>
+                        </div>
                             
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
                         <button type="submit" name="confirmEdit" class="btn btn-primary">บันทึก</button>
                     </div>
                     </div>
@@ -171,16 +175,17 @@ if(isset($_POST['confirmEdit'])){
             <form action="" method="post" class="form">
             <div class="col-md-12 c-box ">
                 <div class="form-group">
-                    <label for="name" class="col-md-4">ระดับชั้น</label>
+                    <label for="name" class="col-md-2">ระดับชั้น</label>
                     <select name="name" id="name">
                         <option value="ปวช.">ปวช</option>
                         <option value="ปวส.">ปวส</option>
                     </select>
                     <label for="year" >ชั้นปี</label>
                     <input type="number" name="lvl" id="year" min="1" max="999" value="1">
-                    <label for="room">ห้อง</label>
+                    <label for="room">/</label>
                     <input type="number" name="room" id="room" min="1" max="999" value="1">
-                    <label for="class" class="col-md-4">ครูประจำชั้น</label>
+                    </div><div class="form-group">
+                    <label for="class" class="col-md-2">ครูประจำชั้น</label>
                     <select name="teacher" >
                             <?php 
                             $str = "SELECT * FROM teachers";
@@ -196,7 +201,7 @@ if(isset($_POST['confirmEdit'])){
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             <button type="submit" name="add_cls" class="btn btn-primary">บันทึกข้อมูล</button>
         </div>
         </div>

@@ -58,9 +58,7 @@ if(isset($_POST['edit_student'])){
     <div class="container bgcolor">
         <?php include('template/top_menu.php');?>
     <p>
-    <div class="row">
-    <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
-    
+    <div class="row">   
     
     <!-- add student btn -->
     <div class="col-md-2">
@@ -68,8 +66,7 @@ if(isset($_POST['edit_student'])){
     เพิ่มนักเรียนใหม่
     </button>
     </div>
-       
-    <?php } ?>
+    
     <div class="col-md-4">
         <form action="" method="get">
         <div class="input-group">

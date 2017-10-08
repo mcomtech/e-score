@@ -72,7 +72,7 @@ include('check-session.php');
                                 <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><i class="material-icons">settings</i> แก้ไขข้อมูลส่วนตัว</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#settings" role="tab"> <i class="material-icons">exit_to_app</i> ออกจากระบบ</a>
+                                <a class="nav-link" data-toggle="tab" href="#settings" role="tab"> <i class="material-icons">account_box</i> เปลี่ยนรูปภาพ</a>
                             </li>
                         </ul>
                     </div>
@@ -185,7 +185,79 @@ include('check-session.php');
                         
                         </div>
                         <div class="tab-pane" id="profile" role="tabpanel">
-                            แก้ไขข้อมูลส่วนตัว
+                            <form action="index.php" method="post">
+                            <input type="hidden" name="stdid" value="<?php echo $student['student_id'];?>">
+                            <strong><h4>ข้อมูลส่วนตัว</h4></strong>
+                            <hr>                            
+                            <dl class="row">
+                            <dt class="col-sm-3">รหัสนักเรียน</dt>
+                            <dd class="col-sm-9">
+                                <input type="text" name="code" value="<?php echo $student['student_code'];?>">
+                            </dd>
+
+                            <dt class="col-sm-3">ชื่อ</dt>
+                            <dd class="col-sm-9">
+                                <select name="title">
+                                    <option value="นาย" <?php if($student['student_title']=="นาย"){echo "selected"; }?>>นาย</option>
+                                    <option value="นางสาว" <?php if($student['student_title']=="นางสาว"){echo "selected"; }?>>นางสาว</option>
+                                    <option value="นาง" <?php if($student['student_title']=="นาง"){echo "selected"; }?>>นาง</option>
+                                </select>
+                                <input type="text" name="fname" value="<?php echo $student['student_fname'];?>"> <input type="text" name="lname" value="<?php echo $student['student_lname'];?>">
+                                
+                            </dd>
+
+                            <dt class="col-sm-3">ระดับชั้น</dt>
+                            <dd class="col-sm-9">
+                                <select name="class">
+                                    <?php 
+                                    $strs = "SELECT * FROM class";
+                                    $rss = mysqli_query($conn,$strs)or die(mysqli_error($conn));
+                                    while($clss = mysqli_fetch_array($rss)){
+                                    ?>
+                                        <option value="<?php echo $clss['class_id'];?>"<?php if($student['class_id']==$clss['class_id']){echo "selected"; }?>>
+                                            <?php echo $clss['class_name'];?> <?php echo $clss['class_lvl'];?>/<?php echo $clss['class_room'];?>
+                                        </option>
+                                    <?php } ?>
+                                    </select>
+                            </dd>
+
+                            <dt class="col-sm-3">สาขา</dt>
+                            <dd class="col-sm-9">
+                               <select name="major">
+                                    <?php 
+                                    $strs = "SELECT * FROM major";
+                                    $rss = mysqli_query($conn,$strs)or die(mysqli_error($conn));
+                                    while($mjr = mysqli_fetch_array($rss)){
+                                    ?>
+                                        <option value="<?php echo $mjr['major_id'];?>"<?php if($student['major_id']==$mjr['major_id']){echo "selected"; }?>>
+                                            <?php echo $mjr['major_name'];?> <?php echo $mjr['major_type'];?>
+                                        </option>
+                                    <?php } ?>
+                                    </select>
+                            </dd>
+
+                            <dt class="col-sm-3 text-truncate">ข้อมูลการติดต่อ</dt>
+                            <dd class="col-sm-9"></dd>
+
+                            <dt class="col-sm-3">เบอร์โทร</dt>
+                            <dd class="col-sm-9">
+                                <input type="text" name="tel" value="<?php echo $student['student_tel'];?>">
+                            </dd>
+
+                            <dt class="col-sm-3">อีเมล์</dt>
+                            <dd class="col-sm-9">
+                                <input type="text" name="email" value="<?php echo $student['student_email'];?>">
+                            </dd>
+                            
+                            <dt class="col-sm-3">ที่อยู่ปัจจุบัน</dt>
+                            <dd class="col-sm-9">
+                                <textarea name="address" cols="68" rows="4"><?php echo $student['student_address'];?></textarea>
+                            </dd>
+
+                            <dt class="col-sm-3"></dt>
+                            <dd class="col-sm-9"><input type="submit" name="update_std" value="แก้ไข" class="btn btn-sm btn-success"></dd>
+                            </dl>
+                            </form>
                         </div>
                         <div class="tab-pane" id="settings" role="tabpanel">ออกจากระบบ</div>
                         </div>
