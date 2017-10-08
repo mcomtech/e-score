@@ -54,15 +54,9 @@ if(isset($_POST['edit_student'])){
 </head>
 
 <body>
-
-    <div class="jumbotron">
-        <div class="container">
-            <h1>ระบบจัดการผลการเรียนออนไลน์</h1>
-            <h4>จัดการนักเรียน</h4>
-        </div>
-    </div>
-    <div class="container">
-        <?php include('template/top_menu.php')?>
+    <?php include('template/_header.php');?>
+    <div class="container bgcolor">
+        <?php include('template/top_menu.php');?>
     <p>
     <div class="row">
     <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
@@ -79,7 +73,7 @@ if(isset($_POST['edit_student'])){
     <div class="col-md-4">
         <form action="" method="get">
         <div class="input-group">
-            <select name="class" id="class" class="form-control" placeholder="เลือกชั้นเรียน" aria-label="เลือกชั้นเรียน">
+            <select name="class" id="class" class="wp" placeholder="เลือกชั้นเรียน" aria-label="เลือกชั้นเรียน">
                 <?php 
                 $teacher = $_SESSION['aID'];
                 if($_SESSION['aStatus']=='ADMIN'){ 
@@ -150,7 +144,7 @@ if(isset($_POST['edit_student'])){
                 <td><?php echo $std['student_title'];?><?php echo $std['student_fname'];?></td>
                 <td><?php echo $std['student_lname'];?></td>
                 <td><?php echo $std['class_name'];?> <?php echo $std['class_lvl'];?>/<?php echo $std['class_room'];?></td>
-                <td><a href="#" class="btn btn-sm btn-primary">ดูข้อมูล</a>
+                <td><a href="std-info.php?student=<?php echo $std['student_id'];?>" class="btn btn-sm btn-primary">ดูข้อมูล</a>
                  <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
                     <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editSTD<?php echo $std['student_id'];?>">แก้ไข</a>
                     <a href="#" onclick="delStd(<?php echo $std['student_id'];?>)" class="btn btn-danger btn-sm">ลบ</a>

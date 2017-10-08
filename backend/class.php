@@ -48,32 +48,24 @@ if(isset($_POST['confirmEdit'])){
       rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-    .row{
-        margin-left:0px;
-    }</style>
 </head>
 
 <body>
-
-    <div class="jumbotron">
-        <div class="container">
-            <h1>ระบบจัดการผลการเรียนออนไลน์</h1>
-            <h4>จัดการชั้นเรียน</h4>
-        </div>
-    </div>
-    <div class="container">
-        <?php include('template/top_menu.php')?>
-
+    <?php include('template/_header.php');?>
+    <div class="container bgcolor">
+    <?php include('template/top_menu.php')?>
+    <p>
+    <div class="row">
     <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
     <!-- add student btn -->
-    <div class="form-group">
+    <div class="col-md-2">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     เพิ่มห้องเรียนใหม่
     </button>
     </div>
     <?php } ?>
+    </div>
+    </p>
 
     <table class="table" id="myTable">
         <thead>

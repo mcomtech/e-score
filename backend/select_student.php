@@ -18,25 +18,23 @@ include('check-session.php');
 
 <body>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>ระบบจัดการผลการเรียนออนไลน์</h1>
-            <h4>จัดการนักเรียน</h4>
-        </div>
-    </div>
-    <div class="container">
+<?php include('template/_header.php');?>
+    <div class="container bgcolor">
         <?php include('template/top_menu.php')?>
-
-    
+    <p>
+    <div class="row">
     <!--เพิ่มนักเรียนสู่รายวิชา-->
     <form action="score.php?subject=<?php echo @$_GET['subject'];?>&search=ค้นหา" method="POST" class="form">
     <input type="hidden" name="subj_id" value="<?php echo $_GET['subject'];?>">
     <!-- add student btn -->
-    <div class="form-group">
+    <div class="col-md-2">
     <button type="submit" class="btn btn-primary" name="confirm">
     เพิ่มที่เลือก
     </button>
     </div>
+    </div>
+    </p>
+    
     <table class="table">
         <thead>
             <tr>
@@ -73,11 +71,15 @@ include('check-session.php');
         </tbody>
     </table>
     <!-- add student btn -->
-    <div class="form-group">
+    <p>
+    <div class="row">
+    <div class="col-md-2">
     <button type="submit" class="btn btn-primary" name="confirm">
     เพิ่มที่เลือก
     </button>
     </div>
+    </div>
+    </p>
     </form>
     <!--สิ้นสุดเพิ่มนักเรียน-->
 

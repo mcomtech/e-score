@@ -20,44 +20,32 @@ include('check-session.php');
 
 <body>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>ระบบจัดการผลการเรียนออนไลน์</h1>
-            <h4>จัดการผู้สอน</h4>
-        </div>
-    </div>
-
-    <!--
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
--->
-
-    <div class="container">
+<?php include('template/_header.php');?>
+    <div class="container bgcolor">
         <?php include('template/top_menu.php')?>
         <div class="row profile">
             <div class="col-md-3">
                 <div class="profile-sidebar">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                        <img src="https://placehold.it/200x200" class="img-responsive" alt="" width="50%">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            Marcus Doe
+                            ศราวุธ  อินรีย์
                         </div>
                         <div class="profile-usertitle-job">
-                            Developer
+                            ครูปฏิบัติการสอน
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
-                    <div class="profile-userbuttons">
+                    <!-- <div class="profile-userbuttons">
                         <button type="button" class="btn btn-success btn-sm">Follow</button>
                         <button type="button" class="btn btn-danger btn-sm">Message</button>
-                    </div>
+                    </div> -->
                     <!-- END SIDEBAR BUTTONS -->
                     <!-- SIDEBAR MENU -->
                     <div class="profile-usermenu">
@@ -66,9 +54,9 @@ Licensed under MIT
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><i class="material-icons">account_box</i> ข้อมูลส่วนตัว</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#msg" role="tab"><i class="material-icons">inbox</i> ข้อความ</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><i class="material-icons">settings</i> แก้ไขข้อมูลส่วนตัว</a>
                             </li>
@@ -87,34 +75,64 @@ Licensed under MIT
                 <div class="profile-content">
                         <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel">
+                            <?php 
+                            $teacherID = $_SESSION['aID'];
+                            $objStr = "SELECT * FROM teachers AS tc,position AS ps, major AS mj ,section AS sc
+                            WHERE tc.position_id = ps.position_id 
+                            AND tc.major_id = mj.major_id
+                            AND tc.section_id = sc.section_id
+                            AND tc.teacher_id = '$teacherID'";
+                            $objrs = mysqli_query($conn,$objStr)or die(mysqli_error($conn));
+                            $teacher = mysqli_fetch_array($objrs);
+                            ?>
                             <strong><h4>ข้อมูลส่วนตัวบุคลากร</h4></strong>
                             <hr>                            
                             <dl class="row">
-                            <dt class="col-sm-3">รหัสประจำตัว</dt>
-                            <dd class="col-sm-9">6001010</dd>
+                            <dt class="col-sm-3">ชื่อผู้ใช้งาน</dt>
+                            <dd class="col-sm-9"><?php echo $teacher['username'];?></dd>
 
                             <dt class="col-sm-3">ชื่อ</dt>
-                            <dd class="col-sm-9">นายศราวุธ  อินรีย์</dd>
+                            <dd class="col-sm-9"><?php echo $teacher['teacher_title'];?><?php echo $teacher['teacher_fname'];?>  <?php echo $teacher['teacher_lname'];?></dd>
 
                             <dt class="col-sm-3">ตำแหน่ง</dt>
-                            <dd class="col-sm-9">ครูปฏิบัติการสอน</dd>
+                            <dd class="col-sm-9"><?php echo $teacher['position_name'];?></dd>
+
+                            <dt class="col-sm-3">สาขา</dt>
+                            <dd class="col-sm-9"><?php echo $teacher['major_name'];?></dd>
 
                             <dt class="col-sm-3 text-truncate">ฝ่ายงาน</dt>
-                            <dd class="col-sm-9">ศูนย์ข้อมูลและสารสนเทศ</dd>
-                            <br>
+                            <dd class="col-sm-9"><?php echo $teacher['section_name'];?></dd>
+
                             <dt class="col-sm-3 text-truncate">ข้อมูลการติดต่อ</dt>
                             <dd class="col-sm-9"></dd>
-                            
+
                             <dt class="col-sm-3">เบอร์โทร</dt>
-                            <dd class="col-sm-9">089-3762369</dd>
+                            <dd class="col-sm-9"><?php echo $teacher['teacher_tel'];?></dd>
 
                             <dt class="col-sm-3">อีเมล์</dt>
-                            <dd class="col-sm-9">doridori2692@gmail.com</dd>
+                            <dd class="col-sm-9"><?php echo $teacher['teacher_email'];?></dd>
+                            
                             </dl>
 
                         </div>
                         <div class="tab-pane" id="msg" role="tabpanel">ข้อความ</div>
-                        <div class="tab-pane" id="profile" role="tabpanel">แก้ไขข้อมูลส่วนตัว</div>
+                        <div class="tab-pane" id="profile" role="tabpanel">
+                            <strong><h4>แก้ไขข้อมูลส่วนตัว</h4></strong>
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <label for="name">ชื่อ</label>
+                                    <select name="title" id="name">
+                                        <option value="นาย" <?php ($teacher['teacher_title']=='นาย')? true :'selected';?>>นาย</option>
+                                        <option value="นาง"  <?php ($teacher['teacher_title']=='นาง')? true :'selected';?>>นาง</option>
+                                        <option value="นางสาว"  <?php ($teacher['teacher_title']=='นางสาว')? true :'selected';?>>นางสาว</option>
+                                    </select>
+                                    <input type="fname" id="name" value="<?php echo $teacher['teacher_fname'];?>">
+                                    <input type="lname" id="name" value="<?php echo $teacher['teacher_lname'];?>">
+                                </div>
+                            </form>
+
+
+                        </div>
                         <div class="tab-pane" id="messages" role="tabpanel">เปลี่ยนรหัสผ่าน</div>
                         <div class="tab-pane" id="settings" role="tabpanel">ออกจากระบบ</div>
                         </div>
@@ -122,11 +140,6 @@ Licensed under MIT
             </div>
         </div>
     </div>
-    <center>
-    <strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
-    </center>
-    <br>
-    <br>
     
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

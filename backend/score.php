@@ -58,26 +58,10 @@ if(isset($_POST['update_grade'])){
 
 <body>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>ระบบจัดการผลการเรียนออนไลน์</h1>
-            <h4>รายวิชา <?php echo $show['subject_name'];?></h4>
-        </div>
-    </div>
-
-    </div>
-    <div class="container">
+<?php include('template/_header.php');?>
+    <div class="container bgcolor">
         <?php include('template/top_menu.php')?>
-
-        <!--เมนูรอง-->
-        <!-- add student btn -->
-        <div class="form-group">
-        <ol class="breadcrumb">    
-        <li class="breadcrumb-item"><a href="subject.php">รายวิชา</a></li>
-        <li class="breadcrumb-item active">รายชื่อนักเรียนในรายวิชา</li>
-        </ol>
-        
-        </div>
+        <p>
         <div class="row">
                 <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
                 <div class="col-md-2">
@@ -87,12 +71,14 @@ if(isset($_POST['update_grade'])){
                  </div>
                 <div class="col-md-1"></div>
                 <?php } ?>
+
                 <div class="col-md-4">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#printModal">
                        <i class="material-icons">print</i> พิมพ์รายงาน
                     </button> 
                 </div>   
         </div>
+        </p>
         <!--สิ้นสุดเมนูรอง-->
 
 

@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "root";
-$pass = "";
-$database = "e-score";
+$user = "appdayin_reg";
+$pass = "lik;6tvboiupn";
+$database = "appdayin_reg";
 
 $conn = mysqli_connect($host,$user,$pass,$database);
 mysqli_query($conn,"set names utf8")

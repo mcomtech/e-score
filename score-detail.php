@@ -1,15 +1,5 @@
 <?php include("config.php"); 
 include('check-session.php');
-if(isset($_POST['add_point'])){
-    $point = $_POST['point'];
-    $title = $_POST['title'];
-    $subject = $_POST['subj'];
-    $student = $_POST['std'];
-
-    $str = "INSERT INTO scores(score_id,subject_id,student_id,score_title,score_point)
-            VALUES('','$subject','$student','$title','$point')";
-    mysqli_query($conn,$str)or die(mysqli_error($conn));
-}
 
 if(!empty($_GET['subject'])&& !empty($_GET['student'])){
     $subject = $_GET['subject'];
@@ -21,44 +11,6 @@ if(!empty($_GET['subject'])&& !empty($_GET['student'])){
     $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
     $data = mysqli_fetch_array($rs);
 }
-
-if(isset($_POST['update'])){
-    $subject = $_GET['subject'];
-    $student = $_GET['student'];
-    $str = "SELECT * FROM scores WHERE subject_id = '".$data['subject_id']."'
-                  AND student_id = '".$data['student_id']."'";
-          $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
-          $i = 1;
-          $total = 0;
-          while($x = mysqli_fetch_array($rs)){    
-          $total = $total + $x['score_point'];
-        }
-
-        if ($total >= 80) {
-            $grade = '4';
-        }elseif ($total >= 75) {
-            $grade = '3.5';
-        }elseif ($total >= 70) {
-            $grade = '3';
-        }elseif ($total >= 65) {
-            $grade = '2.5';
-        }elseif ($total >= 60) {
-            $grade = '2';
-        }elseif ($total >= 55) {
-            $grade = '1.5';
-        }elseif ($total >= 50) {
-            $grade = '1';
-        }else {
-            $grade = '0';
-        }
-        
-        $str = "UPDATE course SET
-        course_grade = '$grade'
-        WHERE subject_id ='$subject' AND student_id='$student'";
-        mysqli_query($conn,$str) or die(mysqli_error($conn));
-}
-
-
 
 ?>
 <!DOCTYPE html>
@@ -99,7 +51,7 @@ if(isset($_POST['update'])){
     <table class="table table-responsive">
     <thead>
         <tr>
-        <th>#</th><th>รายการ</th><th>คะแนน</th><th>จัดการ</th>
+        <th>#</th><th>รายการ</th><th>คะแนน</th>
         </tr>
     </thead>
     <tbody>
@@ -115,31 +67,16 @@ if(isset($_POST['update'])){
         <td><?php echo $i;?></td>
         <td><?php echo $score['score_title'];?></td>
         <td><?php echo $score['score_point'];?></td>
-        <td>
-            <a href="delete.php?act=del_score&score=<?php echo $score['score_id'];?>&std=<?php echo $data['student_id'];?>&subj=<?php echo $data['subject_id'];?>" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></a>
-        </td>
         </tr>
           <?php $i++;} ?>
         <form action="" method="post" class="form">
         <tr>
         <td></td> 
         <td>คะแนนรวม</td>
-        <td><?php echo $total;?> คะแนน</td>
-        <td><button type="submit" name="update" class="btn btn-primary btn-sm">อัพเดท</button></td>
+        <td><strong><?php echo $total;?> คะแนน</strong></td>
         </tr>
     </tbody>
-    <tfoot>
     
-    <input type="hidden" name="std" value="<?php echo $data['student_id'];?>">
-    <input type="hidden" name="subj" value="<?php echo $data['subject_id'];?>">
-        <tr>
-        <td></td>
-        <td><input type="text" name="title" placeholder="กรอกชื่อรายการ" autofocus class="form-control"></td>
-        <td><input type="text" name="point" placeholder="กรอกคะแนน" class="form-control" min="1" max="100"></td>
-        <td><button type="submit" name="add_point" class="btn btn-success btn-sm"> <i class="material-icons">control_point</i></button></td>
-        </tr>
-    </form>
-    </tfoot>
     </table>
 
  

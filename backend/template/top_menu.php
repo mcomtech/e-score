@@ -1,5 +1,13 @@
 <!--เมนูด้านบน-->
-        <ul class="nav nav-pills justify-content-end">
+        
+        <!--จบเมนูด้านบน-->
+    <div class="box-top">
+        <nav class="navbar navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand" href="#">
+                <img src="https://an-tech.ac.th/main/wp-content/uploads/2017/05/logo-300x300.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                E-SCORE
+            </a>
+            <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
                 <a class="nav-link <?php if(basename($_SERVER['PHP_SELF']) == "student.php"){ echo "active"; } ?>" href="student.php">รายชื่อนักเรียน</a>
             </li>
@@ -24,4 +32,5 @@
                 <a class="nav-link disabled" href="index.php?logged_out=true">ออกจากระบบ</a>
             </li>
         </ul>
-        <!--จบเมนูด้านบน-->
+    </nav>
+    </div>

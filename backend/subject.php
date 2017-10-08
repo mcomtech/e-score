@@ -32,26 +32,22 @@ if(isset($_POST['add_subject'])){
 
 <body>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>ระบบจัดการผลการเรียนออนไลน์</h1>
-            <h4>จัดการรายวิชา</h4>
-        </div>
-    </div>
-
-    
-    <div class="container">
+<?php include('template/_header.php');?>
+    <div class="container bgcolor">
         <?php include('template/top_menu.php')?>
-
-    <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
-    <!-- add student btn -->
-    <div class="form-group">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    เพิ่มรายวิชาใหม่ 
-    </button>
-    </div>
-    <? } ?>
-
+    <p>
+        <div class="row">
+            <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
+            <!-- add student btn -->
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    เพิ่มรายวิชาใหม่ 
+                </button>
+            </div>
+            <? } ?>
+        </div>
+    </p>
+    
     <table class="table" id="myTable">
         <thead>
             <tr>
@@ -73,8 +69,7 @@ if(isset($_POST['add_subject'])){
                 AND t.username ='$user'";
             
             }
-            
-            
+
             $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
             $i = 1;
             while($subj = mysqli_fetch_array($rs)){

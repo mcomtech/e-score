@@ -3,9 +3,26 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 ***/
-
+@import url('https://fonts.googleapis.com/css?family=Kanit|Prompt');
 body {
   background: #F1F3FA;
+
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Kanit', sans-serif;
+}
+header{
+  background: url('../img/header.jpg') no-repeat center center;
+  background-size: cover;
+}
+.bgcolor{
+  background: #FFFFFF;
+}
+.h-box{
+  padding-top: 100px;
+  padding-bottom: 50px;
+  color: #fafcfd;
+  font-family: 'Kanit', sans-serif;
 }
 
 /* Profile container */
@@ -20,13 +37,15 @@ body {
 }
 
 .profile-userpic img {
-  float: none;
+  /* float: none;
   margin: 0 auto;
   width: 50%;
   height: 50%;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
+  border-radius: 50% !important; */
+  /* border-radius: 100%; */
+  margin-left: 25%
 }
 
 .profile-usertitle {
@@ -67,7 +86,7 @@ body {
 }
     
 .profile-usermenu {
-  margin-top: 30px;
+  margin-top: 49px;
 }
 
 .profile-usermenu ul li {
@@ -126,4 +145,24 @@ body {
 }
 .btn {
   border-radius: 0px;
+}
+.btn-secondary {
+  height: 39.9px;
+}
+.wp{
+  width:100%;
+}
+select{
+  padding:7.4px 10px;
+}
+input{
+  padding:6px 6px;
+ }
+
+ .nav-pills .nav-link {
+     border-radius: 0; 
+      color:#FFFFFF;
+}
+.box-top{
+  padding-top: 10px;
 }
