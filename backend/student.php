@@ -239,7 +239,7 @@ if(isset($_POST['edit_student'])){
             
             <div class="form-group">
                 <label for="code">รหัสประจำตัว</label>
-                <input type="text" placeholder="รหัสนักเรียน" name="code" class="form-control">
+                <input type="text" placeholder="รหัสนักเรียน" name="code" class="form-control" autofocus>
                 <label for="title">คำนำหน้า</label>
                 <select name="title" class="form-control">
                     <option value="นาย">นาย</option>
@@ -257,7 +257,7 @@ if(isset($_POST['edit_student'])){
                 $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
                 while($cls = mysqli_fetch_array($rs)){
                 ?>
-                    <option value="<?php echo $cls['class_id'];?>"><?php echo $cls['class_name'];?> <?php echo $cls['class_lvl'];?>/<?php echo $cls['class_room'];?></option>
+                    <option value="<?php echo $cls['class_id'];?>" <?php if(@$_GET['class']==$cls['class_id']){echo "selected"; }?>><?php echo $cls['class_name'];?> <?php echo $cls['class_lvl'];?>/<?php echo $cls['class_room'];?></option>
                 <?php } ?>
                 </select>
                 
