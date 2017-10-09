@@ -16,8 +16,8 @@ if(isset($_POST['confirm'])){
 
     $std_id = $stds;
     $subj_id = $_POST['subj_id'];
-    $str = "INSERT INTO course(course_id,subject_id,student_id) 
-            VALUES('','$subj_id','$std_id')";
+    $str = "INSERT INTO course(course_id,subject_id,student_id,course_grade) 
+            VALUES('','$subj_id','$std_id','2.00')";
     mysqli_query($conn,$str)or die(mysqli_error($conn));
 
 }
