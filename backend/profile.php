@@ -129,6 +129,33 @@ include('check-session.php');
                                     <input type="fname" id="name" value="<?php echo $teacher['teacher_fname'];?>">
                                     <input type="lname" id="name" value="<?php echo $teacher['teacher_lname'];?>">
                                 </div>
+                                <div class="form-group">
+                                <label for="position">ตำแหน่ง</label>
+                                <select name="position" id="position">
+                                    <option value="1">ผู้อำนวยการ</option>
+                                    <option value="2">รองผู้อำนวยการ</option>
+                                    <option value="3">หัวหน้าฝ่าย</option>
+                                    <option value="4">ครูปฏิบัติการสอน</option>
+                                    <option value="5">บุคลากร</option>
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="major">สาขา</label>
+                                <select name="major" id="major">
+                                    <option value="1">คอมพิวเตอร์ธุรกิจ</option>
+                                    <option value="2">การบัญชี</option>
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="section">ฝ่ายงาน</label>
+                                <select name="section" id="section">
+                                <option value="1">ฝ่ายบริหารทรัพยากร</option>
+                                <option value="2">ฝ่ายแผนงานและความร่วมมือ</option>
+                                <option value="3">ฝ่ายพัฒนากิจการนักศึกษา</option>
+                                <option value="4">ฝ่ายวิชาการ</option>
+                                </select>
+                                </div>
+
                             </form>
 
 
