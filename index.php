@@ -50,6 +50,11 @@ echo "<script>window.location='profile.php';</script>";
 <!DOCTYPE html>
 <html lang="TH">
 <head>
+    <meta property="og:url"                content="https://reg.an-tech-ac.th" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="ระบบสารสนเทศ วิทยาลัยเทคโนโลยีเอ็น-เทคบริหารธุรกิจ" />
+    <meta property="og:description"        content="พัฒนาเพื่อใช้ในงานทะเบียนและประมวลผลการเรียน สำหรับนักเรียน และบุคลากร" />
+    <meta property="og:image"              content="https://reg.an-tech.ac.th/img/cover.jpg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
