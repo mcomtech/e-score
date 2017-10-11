@@ -73,7 +73,7 @@ include('check-session.php');
             </div>
             <div class="col-md-9">
                 <div class="profile-content">
-                        <div class="tab-content">
+                    <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel">
                             <?php 
                             $teacherID = $_SESSION['aID'];
@@ -118,19 +118,27 @@ include('check-session.php');
                         <div class="tab-pane" id="msg" role="tabpanel">ข้อความ</div>
                         <div class="tab-pane" id="profile" role="tabpanel">
                             <strong><h4>แก้ไขข้อมูลส่วนตัว</h4></strong>
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <label for="name">ชื่อ</label>
-                                    <select name="title" id="name">
-                                        <option value="นาย" <?php ($teacher['teacher_title']=='นาย')? true :'selected';?>>นาย</option>
-                                        <option value="นาง"  <?php ($teacher['teacher_title']=='นาง')? true :'selected';?>>นาง</option>
-                                        <option value="นางสาว"  <?php ($teacher['teacher_title']=='นางสาว')? true :'selected';?>>นางสาว</option>
-                                    </select>
-                                    <input type="fname" id="name" value="<?php echo $teacher['teacher_fname'];?>">
-                                    <input type="lname" id="name" value="<?php echo $teacher['teacher_lname'];?>">
-                                </div>
-                                <div class="form-group">
-                                <label for="position">ตำแหน่ง</label>
+                            <form action="index.php" method="post">
+                            <strong><h4>ข้อมูลส่วนตัวบุคลากร</h4></strong>
+                            <hr>                            
+                            <dl class="row">
+                            <dt class="col-sm-3">ชื่อผู้ใช้งาน</dt>
+                            <dd class="col-sm-9"><?php echo $teacher['username'];?></dd>
+
+                            <dt class="col-sm-3">ชื่อ</dt>
+                            <dd class="col-sm-9">
+                                <select name="title" id="name">
+                                    <option value="นาย" <?php ($teacher['teacher_title']=='นาย')? true :'selected';?>>นาย</option>
+                                    <option value="นาง"  <?php ($teacher['teacher_title']=='นาง')? true :'selected';?>>นาง</option>
+                                    <option value="นางสาว"  <?php ($teacher['teacher_title']=='นางสาว')? true :'selected';?>>นางสาว</option>
+                                </select>
+                                <input type="fname" id="name" value="<?php echo $teacher['teacher_fname'];?>">
+                                <input type="lname" id="name" value="<?php echo $teacher['teacher_lname'];?>">
+                                
+                            </dd>
+
+                            <dt class="col-sm-3">ตำแหน่ง</dt>
+                            <dd class="col-sm-9">
                                 <select name="position" id="position">
                                     <option value="1">ผู้อำนวยการ</option>
                                     <option value="2">รองผู้อำนวยการ</option>
@@ -138,23 +146,43 @@ include('check-session.php');
                                     <option value="4">ครูปฏิบัติการสอน</option>
                                     <option value="5">บุคลากร</option>
                                 </select>
-                                </div>
-                                <div class="form-group">
-                                <label for="major">สาขา</label>
+                            </dd>
+
+                            <dt class="col-sm-3">สาขา</dt>
+                            <dd class="col-sm-9">
                                 <select name="major" id="major">
                                     <option value="1">คอมพิวเตอร์ธุรกิจ</option>
                                     <option value="2">การบัญชี</option>
                                 </select>
-                                </div>
-                                <div class="form-group">
-                                <label for="section">ฝ่ายงาน</label>
+                            </dd>
+
+                            <dt class="col-sm-3 text-truncate">ฝ่ายงาน</dt>
+                            <dd class="col-sm-9">
                                 <select name="section" id="section">
-                                <option value="1">ฝ่ายบริหารทรัพยากร</option>
-                                <option value="2">ฝ่ายแผนงานและความร่วมมือ</option>
-                                <option value="3">ฝ่ายพัฒนากิจการนักศึกษา</option>
-                                <option value="4">ฝ่ายวิชาการ</option>
+                                    <option value="1">ฝ่ายบริหารทรัพยากร</option>
+                                    <option value="2">ฝ่ายแผนงานและความร่วมมือ</option>
+                                    <option value="3">ฝ่ายพัฒนากิจการนักศึกษา</option>
+                                    <option value="4">ฝ่ายวิชาการ</option>
                                 </select>
-                                </div>
+                            </dd>
+
+                            <dt class="col-sm-3 text-truncate">ข้อมูลการติดต่อ</dt>
+                            <dd class="col-sm-9"></dd>
+
+                            <dt class="col-sm-3">เบอร์โทร</dt>
+                                <dd class="col-sm-9"><input type="text" name="tel" value="<?php echo $teacher['teacher_tel'];?>" >
+                            </dd>
+
+                            <dt class="col-sm-3">อีเมล์</dt>
+                            <dd class="col-sm-9">
+                                <input type="email" name="email" value="<?php echo $teacher['teacher_email'];?>">
+                            </dd>
+                            
+                            <dt class="col-sm-3"></dt>
+                            <dd class="col-sm-9">
+                                <button type="submit" name="edit_profile" class="btn btn-primary">อัพเดทข้อมูล</button>
+                            </dd>
+                            </dl>
 
                             </form>
 
@@ -182,7 +210,7 @@ include('check-session.php');
 
                         </div>
                         <div class="tab-pane" id="settings" role="tabpanel">ออกจากระบบ</div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
