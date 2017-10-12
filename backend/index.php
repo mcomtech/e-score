@@ -86,6 +86,8 @@ if(isset($_POST['edit_profile'])){
 
     mysqli_query($conn,$objStr)or die(mysqli_error($conn));
 
+     echo "<script>alert('แก้ไขข้อมูลส่วนตัวแล้ว!');</script>";
+    echo "<script>window.location='profile.php';</script>";
 
 }
 
