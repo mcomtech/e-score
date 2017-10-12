@@ -141,7 +141,7 @@ include('check-session.php');
                             <dd class="col-sm-9">
                                 <select name="position" id="position">
                                 <?php $pStr = "SELECT * FROM position";
-                                    $pra = mysqli_query($conn,$pStr or die(mysqli_error($conn)));
+                                    $pra = mysqli_query($conn,$pStr) or die(mysqli_error($conn));
                                     while ($position = mysqli_fetch_array($pra)) {
                                 ?>
                                     <option value="<?php echo $position['position_id'];?>"><?php echo $position['position_name'];?></option>
