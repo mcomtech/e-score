@@ -165,10 +165,12 @@ include('check-session.php');
                             <dt class="col-sm-3 text-truncate">ฝ่ายงาน</dt>
                             <dd class="col-sm-9">
                                 <select name="section" id="section">
-                                    <option value="1">ฝ่ายบริหารทรัพยากร</option>
-                                    <option value="2">ฝ่ายแผนงานและความร่วมมือ</option>
-                                    <option value="3">ฝ่ายพัฒนากิจการนักศึกษา</option>
-                                    <option value="4">ฝ่ายวิชาการ</option>
+                                    <?php $seStr = "SELECT * FROM section";
+                                    $sers = mysqli_query($conn,$seStr)or die(mysqli_error($conn));
+                                    while($section = mysqli_fetch_array($sers)){
+                                    ?>
+                                    <option value="<?php echo $section['section_id'];?>" <?php if($section['section_id']== $teacher['section_id']){ echo "selected";}?>><?php echo $section['section_name'];?></option>
+                                    <?php }?>
                                 </select>
                             </dd>
 
