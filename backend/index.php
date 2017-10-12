@@ -59,6 +59,36 @@ if(isset($_POST['edit_subject'])){
     echo "<script>window.location='subject.php';</script>";
 }
 
+// แก้ไขข้อมูลส่วนตัว
+if(isset($_POST['edit_profile'])){
+    $teacher = $_POST['teacher'];
+    $username = $_POST['username'];
+    $title = $_POST['title'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $position = $_POST['position'];
+    $major = $_POST['major'];
+    $section = $_POST['section'];
+    $tel = $_POST['tel'];
+    $email = $_POST['email'];
+
+    $objStr = "UPDATE teachers SET
+    username = '$username',
+    teacher_title = '$title',
+    teacher_fname = '$fname',
+    teacher_lname = '$lname',
+    teacher_tel = '$tel',
+    teacher_email = '$email',
+    major_id = '$major',
+    position_id = '$position',
+    section_id = '$section'
+    WHERE teacher_id = '$teacher'";
+
+    mysqli_query($conn,$objStr)or die(mysqli_error($conn));
+
+
+}
+
 if(isset($_POST['changepass'])){
     $old = md5($_POST['old-pass']);
     $pass1 = md5($_POST['password1']);
