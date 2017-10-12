@@ -1,5 +1,13 @@
 <?php include("config.php"); 
 include('check-session.php');
+$teacherID = $_SESSION['aID'];
+$objStr = "SELECT * FROM teachers AS tc,position AS ps, major AS mj ,section AS sc
+WHERE tc.position_id = ps.position_id 
+AND tc.major_id = mj.major_id
+AND tc.section_id = sc.section_id
+AND tc.teacher_id = '$teacherID'";
+$objrs = mysqli_query($conn,$objStr)or die(mysqli_error($conn));
+$teacher = mysqli_fetch_array($objrs);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,16 +36,16 @@ include('check-session.php');
                 <div class="profile-sidebar">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="https://placehold.it/200x200" class="img-responsive" alt="" width="50%">
+                        <img src="<?php echo $teacher['teacher_pic'];?>" class="img-responsive" alt="" width="50%">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            ศราวุธ  อินรีย์
+                            <?php echo $teacher['teacher_title'];?><?php echo $teacher['teacher_fname'];?>  <?php echo $teacher['teacher_lname'];?>
                         </div>
                         <div class="profile-usertitle-job">
-                            ครูปฏิบัติการสอน
+                            <?php echo $teacher['position_name'];?>
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -75,16 +83,7 @@ include('check-session.php');
                 <div class="profile-content">
                     <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel">
-                            <?php 
-                            $teacherID = $_SESSION['aID'];
-                            $objStr = "SELECT * FROM teachers AS tc,position AS ps, major AS mj ,section AS sc
-                            WHERE tc.position_id = ps.position_id 
-                            AND tc.major_id = mj.major_id
-                            AND tc.section_id = sc.section_id
-                            AND tc.teacher_id = '$teacherID'";
-                            $objrs = mysqli_query($conn,$objStr)or die(mysqli_error($conn));
-                            $teacher = mysqli_fetch_array($objrs);
-                            ?>
+                            
                             <strong><h4>ข้อมูลส่วนตัวบุคลากร</h4></strong>
                             <hr>                            
                             <dl class="row">
