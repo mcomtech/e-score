@@ -133,8 +133,8 @@ include('check-session.php');
                                     <option value="นาง"  <?php ($teacher['teacher_title']=='นาง')? true :'selected';?>>นาง</option>
                                     <option value="นางสาว"  <?php ($teacher['teacher_title']=='นางสาว')? true :'selected';?>>นางสาว</option>
                                 </select>
-                                <input type="fname" id="name" value="<?php echo $teacher['teacher_fname'];?>">
-                                <input type="lname" id="name" value="<?php echo $teacher['teacher_lname'];?>">
+                                <input type="text" name="fname"  value="<?php echo $teacher['teacher_fname'];?>">
+                                <input type="text" name="lname" value="<?php echo $teacher['teacher_lname'];?>">
                                 
                             </dd>
 
