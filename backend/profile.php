@@ -117,7 +117,7 @@ $teacher = mysqli_fetch_array($objrs);
                         <div class="tab-pane" id="msg" role="tabpanel">ข้อความ</div>
                         <div class="tab-pane" id="profile" role="tabpanel">
                             <strong><h4>แก้ไขข้อมูลส่วนตัว</h4></strong>
-                            <form action="index.php" method="post">
+                            <form action="index.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="teacher" value="<?php echo $teacher['teacher_id'];?>">
                             <strong><h4>ข้อมูลส่วนตัวบุคลากร</h4></strong>
                             <hr>                            
@@ -183,6 +183,12 @@ $teacher = mysqli_fetch_array($objrs);
                             <dt class="col-sm-3">อีเมล์</dt>
                             <dd class="col-sm-9">
                                 <input type="email" name="email" value="<?php echo $teacher['teacher_email'];?>">
+                            </dd>
+
+                            <dt class="col-sm-3">รูปประจำตัว</dt>
+                            <dd class="col-sm-9">
+                                    <input type="files" name="profile_pic">
+                            
                             </dd>
                             
                             <dt class="col-sm-3"></dt>
