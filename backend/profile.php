@@ -119,11 +119,12 @@ include('check-session.php');
                         <div class="tab-pane" id="profile" role="tabpanel">
                             <strong><h4>แก้ไขข้อมูลส่วนตัว</h4></strong>
                             <form action="index.php" method="post">
+                            <input type="hidden" name="teacher" value="<?php echo $teacher['teacher_id'];?>">
                             <strong><h4>ข้อมูลส่วนตัวบุคลากร</h4></strong>
                             <hr>                            
                             <dl class="row">
                             <dt class="col-sm-3">ชื่อผู้ใช้งาน</dt>
-                            <dd class="col-sm-9"><?php echo $teacher['username'];?></dd>
+                            <dd class="col-sm-9"><input type="text" name="username" value="<?php echo $teacher['username'];?>"></dd>
 
                             <dt class="col-sm-3">ชื่อ</dt>
                             <dd class="col-sm-9">
@@ -144,7 +145,7 @@ include('check-session.php');
                                     $pra = mysqli_query($conn,$pStr) or die(mysqli_error($conn));
                                     while ($position = mysqli_fetch_array($pra)) {
                                 ?>
-                                    <option value="<?php echo $position['position_id'];?>"><?php echo $position['position_name'];?></option>
+                                    <option value="<?php echo $position['position_id'];?>" <?php if($position['position_id'] == $teacher['position_id']){ echo "selected"; }?>><?php echo $position['position_name'];?></option>
                                     <?php } ?>
                                 </select>
                             </dd>
@@ -152,8 +153,12 @@ include('check-session.php');
                             <dt class="col-sm-3">สาขา</dt>
                             <dd class="col-sm-9">
                                 <select name="major" id="major">
-                                    <option value="1">คอมพิวเตอร์ธุรกิจ</option>
-                                    <option value="2">การบัญชี</option>
+                                <?php $mStr = "SELECT * FROM major";
+                                $mrs = mysqli_query($conn,$mStr)or die(mysqli_error($conn));
+                                while ($major = mysqli_fetch_array($mrs)) {
+                                ?>
+                                    <option value="<?php echo $major['major_id'];?>" <?php if($major['major_id']== $teacher['major_id']){ echo "selected";}?>><?php echo $major['major_name'];?></option>
+                                <?php } ?>
                                 </select>
                             </dd>
 
