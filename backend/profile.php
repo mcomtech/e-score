@@ -144,7 +144,7 @@ include('check-session.php');
                                     $pra = mysqli_query($conn,$pStr or die(mysqli_error($conn)));
                                     while ($position = mysqli_fetch_array($pra)) {
                                 ?>
-                                    <option value="<?$position['position_id'];?>"><?$position['position_name'];?></option>
+                                    <option value="<?php echo $position['position_id'];?>"><?php echo $position['position_name'];?></option>
                                     <?php } ?>
                                 </select>
                             </dd>
