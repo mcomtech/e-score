@@ -140,11 +140,12 @@ include('check-session.php');
                             <dt class="col-sm-3">ตำแหน่ง</dt>
                             <dd class="col-sm-9">
                                 <select name="position" id="position">
-                                    <option value="1">ผู้อำนวยการ</option>
-                                    <option value="2">รองผู้อำนวยการ</option>
-                                    <option value="3">หัวหน้าฝ่าย</option>
-                                    <option value="4">ครูปฏิบัติการสอน</option>
-                                    <option value="5">บุคลากร</option>
+                                <?php $pStr = "SELECT * FROM position";
+                                    $pra = mysqli_query($conn,$pStr or die(mysqli_error($conn)));
+                                    while ($position = mysqli_fetch_array($pra)) {
+                                ?>
+                                    <option value="<?$position['position_id'];?>"><?$position['position_name'];?></option>
+                                    <?php } ?>
                                 </select>
                             </dd>
 
