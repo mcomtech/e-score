@@ -72,7 +72,7 @@ $teacher = mysqli_fetch_array($objrs);
                                 <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><i class="material-icons">vpn_key</i> เปลี่ยนรหัสผ่าน</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#settings" role="tab"> <i class="material-icons">exit_to_app</i> ออกจากระบบ</a>
+                                <a class="nav-link" href="index.php?logged_out=true" role="tab"> <i class="material-icons">exit_to_app</i> ออกจากระบบ</a>
                             </li>
                         </ul>
                     </div>
