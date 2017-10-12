@@ -187,7 +187,8 @@ $teacher = mysqli_fetch_array($objrs);
 
                             <dt class="col-sm-3">รูปประจำตัว</dt>
                             <dd class="col-sm-9">
-                                    <input type="files" name="profile_pic">
+                                    <input type="file" name="profile_pic"  accept="image/*">
+                                    <input type="hidden" name="old_pic" value="<?php echo $teacher['teacher_pic'];?>">
                             
                             </dd>
                             
