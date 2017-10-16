@@ -62,20 +62,24 @@ if(isset($_POST['edit_subject'])){
 // แก้ไขข้อมูลส่วนตัว
 if(isset($_POST['edit_profile'])){
 
-    $target_dir = "img/profile_pic/";
-    $target_file = $target_dir . md5("0".$_POST['teacher_id']);
-    $uploadOk = 1;
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        unlink(md5("0".$_POST['teacher_id']));
+    if(!empty($_FILES['profile_pic'])){
+        $target_dir = "img/profile_pic/";
+        $target_file = $target_dir . md5("0".$_POST['teacher_id']);
         $uploadOk = 1;
-    }
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-    if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file)) {
-        $teacher_pic = $target_file;
-    } else {
-        $teacher_pic = "https://placehold.it/200x200";
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            unlink(md5("0".$_POST['teacher_id']));
+            $uploadOk = 1;
+        }
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        // Check if image file is a actual image or fake image
+        if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file)) {
+            $teacher_pic = $target_file;
+        } else {
+            $teacher_pic = "https://placehold.it/200x200";
+        }
+    }else{
+        $teacher_pic = $_POST['old_pic'];
     }
 
 
