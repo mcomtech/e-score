@@ -79,7 +79,7 @@ include('check-session.php');
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">เพิ่มนักเรียนใหม่</h5>
+            <h5 class="modal-title" id="exampleModalLabel">เพิ่มครูใหม่</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -87,11 +87,18 @@ include('check-session.php');
         <div class="modal-body">
             <form action="" method="post" class="form">
                 <div class="form-group">
-                    
-
-
-
-
+                    <label for="code">ชื่อผู้ใช้งาน</label>
+                <input type="text" placeholder="username" name="username" class="form-control" autofocus>
+                <label for="title">คำนำหน้า</label>
+                <select name="title" class="form-control">
+                    <option value="นาย">นาย</option>
+                    <option value="นางสาว">นางสาว</option>
+                    <option value="นาง">นาง</option>
+                </select>
+                <label for="fname">ชื่อ</label>
+                <input type="text" placeholder="ชื่อ" name="fname" class="form-control">
+                <label for="lname">นามสกุล</label>
+                <input type="text" placeholder="นามสกุล" name="lname" class="form-control">
                 </div>
         </div>
         <div class="modal-footer">
