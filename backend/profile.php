@@ -128,9 +128,9 @@ $teacher = mysqli_fetch_array($objrs);
                             <dt class="col-sm-3">ชื่อ</dt>
                             <dd class="col-sm-9">
                                 <select name="title" id="name">
-                                    <option value="นาย" <?php ($teacher['teacher_title']=='นาย')? true :'selected';?>>นาย</option>
-                                    <option value="นาง"  <?php ($teacher['teacher_title']=='นาง')? true :'selected';?>>นาง</option>
-                                    <option value="นางสาว"  <?php ($teacher['teacher_title']=='นางสาว')? true :'selected';?>>นางสาว</option>
+                                    <option value="นาย" <?php if($teacher['teacher_title']=='นาย'){ echo 'selected';}?>>นาย</option>
+                                    <option value="นาง"  <?php if($teacher['teacher_title']=='นาง'){ echo 'selected';}?>>นาง</option>
+                                    <option value="นางสาว"  <?php if($teacher['teacher_title']=='นางสาว'){ echo 'selected';};?>>นางสาว</option>
                                 </select>
                                 <input type="text" name="fname"  value="<?php echo $teacher['teacher_fname'];?>">
                                 <input type="text" name="lname" value="<?php echo $teacher['teacher_lname'];?>">
