@@ -1,5 +1,18 @@
 <?php include("config.php"); 
 include('check-session.php');
+
+if(isset($_POST['add_teacher'])){
+    $username = $_POST['username'];
+    $title = $_POST['title'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $public_id = $_POST['public_id'];
+    $password = md5($_POST['public_id']);
+    $string = "INSERT INTO teachers(teacher_id,username,password,teacher_title,teacher_fname,teacher_lname,major_id,position_id,section_id,status,teacher_public_id)
+                VALUES('','$username','$password','$title','$fname','$lname','2','4','1','USER','$public_id')";
+    mysqli_query($conn,$string)or die($mysqli_error($conn));
+    
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +80,7 @@ include('check-session.php');
                      <?php echo $tss['major_name'];?>
                 </td>
                 <td>
-                    
+                    <a href="#" class="btn btn-warning btn-sm">แก้ไข</a>
                 </td>
             </tr>
             <?php $i++; } ?>
@@ -100,10 +113,12 @@ include('check-session.php');
                 <label for="lname">นามสกุล</label>
                 <input type="text" placeholder="นามสกุล" name="lname" class="form-control">
                 </div>
+                <label for="id">เลขบัตรประชาชน</label>
+                <input type="text" name="public_id" placeholder="หมายเลขบัตรประชาชน" class="form-control">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="add_cls" class="btn btn-primary">บันทึกข้อมูล</button>
+            <button type="submit" name="add_teacher" class="btn btn-primary">บันทึกข้อมูล</button>
         </div>
         </div>
         </form>
