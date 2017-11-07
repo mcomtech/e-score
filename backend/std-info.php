@@ -131,12 +131,13 @@ include('check-session.php');
                                </thead>
                                <tbody>
                                    <tr><td>
-                                    <table class="table" id="myTable" style="font-size:12px;">
+                                    <table class="table table-sm" id="myTable" style="font-size:12px;">
                                     <thead>
                                         <tr>
                                         <th>รหัสวิชา</th>
                                         <th>ชื่อวิชา</th>
                                         <th>ผู้สอน</th>
+                                        <th>นก</th>
                                         <th>เกรด</th>
                                         <th>จัดการ</th>
                                         </tr>
@@ -151,16 +152,20 @@ include('check-session.php');
                                             AND co.student_id = '$stdID'
                                             AND sj.term_id = '$term[term_id]'";
                                         $rs = mysqli_query($conn,$str)or die(mysqli_error($conn));
+                                        $total_unit = 0;
+                                        $total_grade = 0;
+                                        $grade_avg = 0;
                                         while($subj = mysqli_fetch_array($rs)){
+                                            $total_unit = $total_unit + $subj['subject_unit'];
+                                            $total_grade = $total_grade + ( $subj['subject_unit'] * $subj['course_grade']);
+                                            $grade_avg = $total_grade / $total_unit;
                                         ?>
                                         <tr>
                                             <td><?php echo $subj['subject_code'];?></td>
                                             <td><?php echo $subj['subject_name'];?></td>
                                             <td>อ.<?php echo $subj['teacher_fname'];?>  <?php echo $subj['teacher_lname'];?></td>
-                                            <td>
-                                                <?php echo $subj['course_grade'];?>
-                                                
-                                            </td>
+                                            <td><?php echo $subj['subject_unit'];?></td>
+                                            <td><?php echo $subj['course_grade'];?></td>
                                             <td>
                                             <a href="score-detail.php?subject=<?php echo $subj['subject_id'];?>&student=<?php echo $_GET['student'];?>" class="btn btn-sm btn-success">คะแนน</a>
                                             <!--ปุ่มลงคะแนน-->
@@ -171,6 +176,17 @@ include('check-session.php');
                                         </tr>
                                         <?php  } ?>
                                     </tbody>
+                                    <tfoot >
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo $total_unit;?></td>
+                                            <td><strong><?php echo substr($grade_avg,0,strpos($grade_avg,'.')+3);;?></strong></td>
+                                            <td></td>
+                                        
+                                        </tr>
+                                    </tfoot>
                                 </table>
                                 
                                 </td></tr>
