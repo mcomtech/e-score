@@ -181,8 +181,8 @@ include('check-session.php');
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td><?php echo $total_unit;?></td>
-                                            <td><strong><?php echo substr($grade_avg,0,strpos($grade_avg,'.')+3);;?></strong></td>
+                                            <td><?php if($total_unit==0){echo "";}else{echo $total_unit;}?></td>
+                                            <td><strong><?php if($grade_avg==0){echo "";}else{echo substr($grade_avg,0,strpos($grade_avg,'.')+3);}?></strong></td>
                                             <td></td>
                                         
                                         </tr>
