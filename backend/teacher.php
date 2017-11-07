@@ -1,5 +1,18 @@
 <?php include("config.php"); 
 include('check-session.php');
+
+if(isset($_POST['add_teacher'])){
+    $username = $_POST['username'];
+    $title = $_POST['title'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $public_id = $_POST['public_id'];
+    $password = md5($_POST['public_id']);
+    $string = "INSERT INTO teachers(teacher_id,username,password,teacher_title,teacher_fname,teacher_lname,major_id,position_id,section_id,status,teacher_public_id)
+                VALUES('','$username','$password','$title','$fname','$lname','2','4','1','USER','$public_id')";
+    mysqli_query($conn,$string)or die($mysqli_error($conn));
+    
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +80,7 @@ include('check-session.php');
                      <?php echo $tss['major_name'];?>
                 </td>
                 <td>
-                    
+                    <a href="#" class="btn btn-warning btn-sm">แก้ไข</a>
                 </td>
             </tr>
             <?php $i++; } ?>
@@ -79,7 +92,7 @@ include('check-session.php');
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">เพิ่มนักเรียนใหม่</h5>
+            <h5 class="modal-title" id="exampleModalLabel">เพิ่มครูใหม่</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -87,16 +100,25 @@ include('check-session.php');
         <div class="modal-body">
             <form action="" method="post" class="form">
                 <div class="form-group">
-                    
-
-
-
-
+                    <label for="code">ชื่อผู้ใช้งาน</label>
+                <input type="text" placeholder="username" name="username" class="form-control" autofocus>
+                <label for="title">คำนำหน้า</label>
+                <select name="title" class="form-control">
+                    <option value="นาย">นาย</option>
+                    <option value="นางสาว">นางสาว</option>
+                    <option value="นาง">นาง</option>
+                </select>
+                <label for="fname">ชื่อ</label>
+                <input type="text" placeholder="ชื่อ" name="fname" class="form-control">
+                <label for="lname">นามสกุล</label>
+                <input type="text" placeholder="นามสกุล" name="lname" class="form-control">
                 </div>
+                <label for="id">เลขบัตรประชาชน</label>
+                <input type="text" name="public_id" placeholder="หมายเลขบัตรประชาชน" class="form-control">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="add_cls" class="btn btn-primary">บันทึกข้อมูล</button>
+            <button type="submit" name="add_teacher" class="btn btn-primary">บันทึกข้อมูล</button>
         </div>
         </div>
         </form>
