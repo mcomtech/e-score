@@ -8,9 +8,10 @@ if(isset($_POST['add_std'])){
     $lname = $_POST['lname'];
     $title = $_POST['title'];
     $class = $_POST['class'];
-
-    $str = "INSERT INTO students(student_id,student_code,student_title,student_fname,student_lname,class_id) 
-            VALUES ('','$code','$title','$fname','$lname','$class')";
+    $major = $_POST['major'];
+    $pass = md5(1234);
+    $str = "INSERT INTO students(student_id,student_code,student_password,student_title,student_fname,student_lname,major_id,class_id,student_status) 
+            VALUES ('','$code','$pass','$title','$fname','$lname','$major','$class','กำลังศึกษาอยู่')";
             mysqli_query($conn,$str);
 
 }
@@ -24,12 +25,13 @@ if(isset($_POST['edit_student'])){
     $lname = $_POST['lname'];
     $title = $_POST['title'];
     $class = $_POST['class'];
-
+    $major = $_POST['major'];
     $str = "UPDATE students SET
             student_code = '$code',
             student_title ='$title',
             student_fname ='$fname',
             student_lname = '$lname',
+            major_id ='$major',
             class_id = '$class'
             WHERE student_id = '$std_id'";
             mysqli_query($conn,$str);
@@ -194,6 +196,18 @@ if(isset($_POST['edit_student'])){
                             <?php } ?>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="major" class="col-md-4">สาขา</label>
+                            <select name="major" id="major">
+                            <?php 
+                            $stringmajor = "SELECT * FROM major";
+                            $resultmajor = mysqli_query($conn,$stringmajor)or die(mysqli_error($conn));
+                            while($major = mysqli_fetch_array($resultmajor)){
+                            ?>
+                                    <option value="<?php echo $major['major_id'];?>" <?php if($std['major_id']==$major['major_id']){echo "selected"; }?>><?php echo $major['major_name'];?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
                     
                     
                     </div>
@@ -251,7 +265,16 @@ if(isset($_POST['edit_student'])){
                     <option value="<?php echo $cls['class_id'];?>" <?php if(@$_GET['class']==$cls['class_id']){echo "selected"; }?>><?php echo $cls['class_name'];?> <?php echo $cls['class_lvl'];?>/<?php echo $cls['class_room'];?></option>
                 <?php } ?>
                 </select>
-                
+                <label for="major">สาขา</label>
+                <select name="major" id="major" class="form-control">
+                    <?php 
+                    $stringmajor = "SELECT * FROM major";
+                    $resultmajor = mysqli_query($conn,$stringmajor)or die(mysqli_error($conn));
+                    while($major = mysqli_fetch_array($resultmajor)){
+                    ?>
+                        <option value="<?php echo $major['major_id'];?>"><?php echo $major['major_name'];?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="form-group">
                 
