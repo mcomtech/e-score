@@ -44,7 +44,7 @@ if(isset($_POST['add_teacher'])){
     <?php if($_SESSION['aStatus']=='ADMIN'){ ?>
     <!-- add student btn -->
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_teacher">
         เพิ่มครูใหม่
         </button>
     </div>
@@ -80,7 +80,89 @@ if(isset($_POST['add_teacher'])){
                      <?php echo $tss['major_name'];?>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-warning btn-sm">แก้ไข</a>
+                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_teacher<?php echo $i;?>">แก้ไข</a>
+                    <!-- Modal Edit TEACHER -->
+                    <div class="modal fade" id="edit_teacher<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูล</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="post" class="form">
+                                <div class="form-group">
+                                    <label for="code" class="col-md-4">ชื่อผู้ใช้งาน</label>
+                                    <input type="text" placeholder="username" name="username" autofocus value="<?php echo $tss['username'];?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title" class="col-md-4">คำนำหน้า</label>
+                                    <select name="title">
+                                        <option value="นาย" <?php if($tss['teacher_title']=="นาย"){echo "selected"; }?>>นาย</option>
+                                        <option value="นางสาว" <?php if($tss['teacher_title']=="นางสาว"){echo "selected"; }?>>นางสาว</option>
+                                        <option value="นาง" <?php if($tss['teacher_title']=="นาง"){echo "selected"; }?>>นาง</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fname" class="col-md-4">ชื่อ</label>
+                                    <input type="text" placeholder="ชื่อ" name="fname" value="<?php echo $tss['teacher_fname'];?>">    
+                                </div>
+                                <div class="form-group">
+                                    <label for="lname"  class="col-md-4">นามสกุล</label>
+                                    <input type="text" placeholder="นามสกุล" name="lname" value="<?php echo $tss['teacher_lname'];?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="id" class="col-md-4">เลขบัตรประชาชน</label>
+                                    <input type="text" name="public_id" placeholder="หมายเลขบัตรประชาชน" value="<?php echo $tss['teacher_public_id'];?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="position" class="col-md-4">ตำแหน่ง</label>
+                                    <select name="position" id="position">
+                                    <?php $pStr = "SELECT * FROM position";
+                                        $pra = mysqli_query($conn,$pStr) or die(mysqli_error($conn));
+                                        while ($position = mysqli_fetch_array($pra)) {
+                                    ?>
+                                        <option value="<?php echo $position['position_id'];?>" <?php if($position['position_id'] == $tss['position_id']){ echo "selected"; }?>><?php echo $position['position_name'];?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="major" class="col-md-4">สาขา</label>
+                                    <select name="major" id="major">
+                                    <?php $mStr = "SELECT * FROM major";
+                                    $mrs = mysqli_query($conn,$mStr)or die(mysqli_error($conn));
+                                    while ($major = mysqli_fetch_array($mrs)) {
+                                    ?>
+                                        <option value="<?php echo $major['major_id'];?>" <?php if($major['major_id']== $tss['major_id']){ echo "selected";}?>><?php echo $major['major_name'];?></option>
+                                    <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="section" class="col-md-4">ฝ่ายงาน</label>
+                                    <select name="section" id="section">
+                                        <?php $seStr = "SELECT * FROM section";
+                                        $sers = mysqli_query($conn,$seStr)or die(mysqli_error($conn));
+                                        while($section = mysqli_fetch_array($sers)){
+                                        ?>
+                                        <option value="<?php echo $section['section_id'];?>" <?php if($section['section_id']== $tss['section_id']){ echo "selected";}?>><?php echo $section['section_name'];?></option>
+                                        <?php }?>
+                                    </select>   
+                                </div>            
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" name="edit_teacher" class="btn btn-primary">บันทึกข้อมูล</button>
+                        </div>
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+
+
                 </td>
             </tr>
             <?php $i++; } ?>
@@ -88,7 +170,7 @@ if(isset($_POST['add_teacher'])){
     </table>
 
     <!-- Modal add students -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="add_teacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -100,24 +182,32 @@ if(isset($_POST['add_teacher'])){
         <div class="modal-body">
             <form action="" method="post" class="form">
                 <div class="form-group">
-                    <label for="code">ชื่อผู้ใช้งาน</label>
-                <input type="text" placeholder="username" name="username" class="form-control" autofocus>
-                <label for="title">คำนำหน้า</label>
-                <select name="title" class="form-control">
+                    <label for="code" class="col-md-4">ชื่อผู้ใช้งาน</label>
+                    <input type="text" placeholder="username" name="username" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="col-md-4">คำนำหน้า</label>
+                    <select name="title">
                     <option value="นาย">นาย</option>
                     <option value="นางสาว">นางสาว</option>
                     <option value="นาง">นาง</option>
-                </select>
-                <label for="fname">ชื่อ</label>
-                <input type="text" placeholder="ชื่อ" name="fname" class="form-control">
-                <label for="lname">นามสกุล</label>
-                <input type="text" placeholder="นามสกุล" name="lname" class="form-control">
+                    </select>
                 </div>
-                <label for="id">เลขบัตรประชาชน</label>
-                <input type="text" name="public_id" placeholder="หมายเลขบัตรประชาชน" class="form-control">
+                <div class="form-group">
+                    <label for="fname" class="col-md-4">ชื่อ</label>
+                    <input type="text" placeholder="ชื่อ" name="fname">    
+                </div>
+                <div class="form-group">
+                    <label for="lname"  class="col-md-4">นามสกุล</label>
+                    <input type="text" placeholder="นามสกุล" name="lname" >
+                </div>
+                <div class="form-group">
+                    <label for="id" class="col-md-4">เลขบัตรประชาชน</label>
+                    <input type="text" name="public_id" placeholder="หมายเลขบัตรประชาชน">
+                </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             <button type="submit" name="add_teacher" class="btn btn-primary">บันทึกข้อมูล</button>
         </div>
         </div>
