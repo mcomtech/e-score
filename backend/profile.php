@@ -118,7 +118,7 @@ $teacher = mysqli_fetch_array($objrs);
                         <div class="tab-pane" id="profile" role="tabpanel">
                             <strong><h4>แก้ไขข้อมูลส่วนตัว</h4></strong>
                             <form action="index.php" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="teacher" value="<?php echo $teacher['teacher_id'];?>">
+                            <input type="hidden" name="teacher_id" value="<?php echo $teacher['teacher_id'];?>">
                             <strong><h4>ข้อมูลส่วนตัวบุคลากร</h4></strong>
                             <hr>                            
                             <dl class="row">
