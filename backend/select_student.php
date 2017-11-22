@@ -64,7 +64,7 @@ include('check-session.php');
                 </td>
                 <td><label for="std<?php echo $std['student_id'];?>"><?php echo $std['student_lname'];?></label>
                 </td>
-                <td><label for="std<?php echo $std['student_id'];?>"><?php echo $std['class_name'];?> <?php echo $std['class_room'];?></label>
+                <td><label for="std<?php echo $std['student_id'];?>"><?php echo $std['class_name'];?> <?php echo $std['class_lvl'];?>/<?php echo $std['class_room'];?></label>
                 </td>
             </tr>
             <?php } }?>
