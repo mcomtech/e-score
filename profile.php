@@ -164,8 +164,8 @@ include('check-session.php');
                                             <td><?php echo $subj['subject_code'];?></td>
                                             <td><?php echo $subj['subject_name'];?></td>
                                             <td>อ.<?php echo $subj['teacher_fname'];?>  <?php echo $subj['teacher_lname'];?></td>
-                                            <td><?php echo $subj['course_grade'];?></td>
                                             <td><?php echo $subj['subject_unit'];?></td>
+                                            <td><?php echo $subj['course_grade'];?></td>
                                             <td>
                                             <a href="score-detail.php?subject=<?php echo $subj['subject_id'];?>&student=<?php echo $stdID;?>" class="btn btn-sm btn-success">คะแนน</a>
                                             <!--ปุ่มลงคะแนน-->
